@@ -9,13 +9,14 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 20px;
+        background-color: slategrey;
     }
     .container {
         max-width: 600px;
         margin: auto;
     }
-    input[type="text"], input[type="email"], input[type="date"], textarea, select, input[type="file"] {
-        width: 100%;
+    input, select, textarea {
+        width: calc(100% - 22px);
         padding: 10px;
         margin: 10px 0;
         border: 1px solid #ccc;
@@ -36,6 +37,12 @@
     .error-message {
         color: red;
         font-size: 0.9em;
+    }
+    .success-message {
+        color: green;
+        font-size: 1em;
+        margin-top: 10px;
+        display: none;
     }
 </style>
 </head>
@@ -72,22 +79,25 @@
         <textarea id="references" name="references" rows="4" required></textarea>
         <div id="errorMessages" class="error-message"></div>
         <input type="submit" value="Submit Application">
+        <div id="successMessage" class="success-message">
+            Application submitted successfully! We will contact you soon.
+        </div>
     </form>
 </div>
 
 <script>
     const form = document.getElementById('applicationForm');
     const errorMessages = document.getElementById('errorMessages');
+    const successMessage = document.getElementById('successMessage');
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
-        const isValid = validateForm();
-        if (isValid) {
-            const formData = new FormData(form);
-            // You can send formData to your server using fetch or XMLHttpRequest
-            console.log('Form data:', formData);
-            // Uncomment the line below to submit the form (this is just for demonstration)
-            // form.submit();
+        if (validateForm()) {
+            // Simulate form submission (replace with actual submission code)
+            setTimeout(function() {
+                form.reset();
+                successMessage.style.display = 'block';
+            }, 1000);
         }
     });
 
@@ -95,55 +105,15 @@
         let isValid = true;
         errorMessages.innerHTML = '';
 
-        if (!form.fullName.value.trim()) {
-            showError('Please enter your name and last name.');
-            isValid = false;
-        }
+        const fieldsToCheck = ['fullName', 'birthDate', 'phoneNumber', 'emailAddress', 'address', 'referral', 'resume', 'coverLetter', 'trainingsCertifications', 'references'];
 
-        if (!form.birthDate.value) {
-            showError('Please enter your birth date.');
-            isValid = false;
-        }
-
-        if (!form.phoneNumber.value.trim()) {
-            showError('Please enter your phone number.');
-            isValid = false;
-        }
-
-        if (!form.emailAddress.value.trim()) {
-            showError('Please enter your email address.');
-            isValid = false;
-        }
-
-        if (!form.address.value.trim()) {
-            showError('Please enter your address.');
-            isValid = false;
-        }
-
-        if (form.referral.value === '') {
-            showError('Please select how you were referred to us.');
-            isValid = false;
-        }
-
-        if (!form.resume.value.trim()) {
-            showError('Please upload your resume.');
-            isValid = false;
-        }
-
-        if (!form.coverLetter.value.trim()) {
-            showError('Please upload your cover letter.');
-            isValid = false;
-        }
-
-        if (!form.trainingsCertifications.value.trim()) {
-            showError('Please enter your trainings and certifications.');
-            isValid = false;
-        }
-
-        if (!form.references.value.trim()) {
-            showError('Please enter your references details.');
-            isValid = false;
-        }
+        fieldsToCheck.forEach(function(fieldName) {
+            const field = form.elements[fieldName];
+            if (!field.value.trim()) {
+                showError('Please enter ' + field.name.toLowerCase() + '.');
+                isValid = false;
+            }
+        });
 
         return isValid;
     }
