@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Me</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+    }
+
+    .form-group button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form-group button:hover {
+        background-color: #0056b3;
+    }
+
+    .office-info {
+        margin-top: 30px;
+    }
+
+    .office-info h2 {
+        margin-bottom: 10px;
+    }
+
+    .office-info img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .map-container {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        height: 0;
+    }
+
+    .map-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Contact Me</h1>
+    <form action="mailto:your@email.com" method="post" enctype="text/plain">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Send Message</button>
+        </div>
+    </form>
+
+    <div class="office-info">
+        <h2>Our Office in Nigeria</h2>
+        <img src="/img/6.jpg" alt="Office Photo" width="600" height="400">
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.087204221271!2d3.351486814879221!3d6.542702295268966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8ef1b9ec64f1%3A0x8df70ff760d03217!2sLagos%20Island%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1647216073348!5m2!1sen!2sng" allowfullscreen></iframe>
+        </div>
+        <p>Address: 123 Office Street, Lagos Island, Lagos, Nigeria</p>
+        <p>Phone: +234 123 456 789</p>
+        <p>Email: info@company.com</p>
+    </div>
+</div>
+</body>
+</html>
